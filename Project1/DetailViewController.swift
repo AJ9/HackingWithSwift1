@@ -10,10 +10,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var detailImageView: UIImageView!
 
 
-    var detailItem: AnyObject? {
+    var detailItem: String? {
         didSet {
             // Update the view.
             self.configureView()
@@ -22,9 +23,9 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+        if let detail = self.detailItem {
+            if let imageView = self.detailImageView {
+                imageView.image = UIImage(named: detail)
             }
         }
     }
@@ -38,6 +39,16 @@ class DetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnTap = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnTap = false
     }
 
 
