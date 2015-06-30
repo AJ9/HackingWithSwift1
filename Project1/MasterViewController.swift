@@ -25,9 +25,8 @@ class MasterViewController: UITableViewController {
         let path = NSBundle.mainBundle().resourcePath!
         let items = fm.contentsOfDirectoryAtPath(path, error: nil)
         
-        let s = items?.first as! String
         
-        NSLog("%@", s)
+        navigationItem.title = "Photo Picker"
         
         for item in items as! [String] {
             if item.hasPrefix("nssl") {
